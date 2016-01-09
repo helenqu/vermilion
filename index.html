@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html ng-app="vermilionApp">
+	<head>
+		<title>vermilion</title>
+		<link href='https://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Slab:400,300,100' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/vermilion.css">
+		<link rel="stylesheet" href="img/font-awesome-4.3.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/clock.js"></script>
+		<script src="js/todo.js"></script>
+	</head>
+	<body>
+		<div id="background"></div>
+		<div id="background2"></div>
+		<div id="clock-container" ng-controller="clockController">
+			<span id="time">{{current_hour}} &nbsp; {{current_minute}} &nbsp; {{current_second}}</span>
+			<span id="date">{{current_month}} {{current_day}}, {{current_year}}</span>
+		</div>
+		<div id="todo-container" ng-controller="todoController">
+			<form ng-submit="add()">
+				<input type="text" ng-model="text" size="30" placeholder="add a new goal">
+				<button type="submit">
+					<i class="fa fa-chevron-right fa-2x"></i>
+				</button>
+			</form>
+			<ul style="list-style:none">
+				<li ng-repeat="item in items track by $index">
+					<div class="checkbox">
+						<input type="checkbox" id="my-checkbox-{{::count()}}" ng-model="item.done" ng-click="$timeout(done, 1000)"/>
+						<label for="my-checkbox-{{::count()}}"></label>
+					</div>
+					<span class="done-{{item.done}}">{{item.text}}</span>
+				</li>
+			</ul>
+		</div>
+		<div id="quicklinks-container">
+			<div class="link small">
+				<a href="https://www.facebook.com"><img src="img/app-icons/facebook.png" class="small"></a>
+			</div>
+			<div class="link small">
+				<a href="https://www.gmail.com"><img src="img/app-icons/mail.png" class="small"></a>
+			</div>
+			<div class="link small">
+				<a href="https://www.pinterest.com"><img src="img/app-icons/pinterest.png" class="small"></a>
+			</div>
+			<div class="link small">
+				<a href="https://www.google.com"><img src="img/app-icons/google.png" class="small"></a>
+			</div>
+			<div class="link small">
+				<a href="https://www.forecast.io"><img src="img/app-icons/weather.png" class="small" style="background-color: white; border-radius: 100%"></a>
+			</div>
+			<div class="main">
+				<img src="img/app-icons/apps.png" class="main">
+			</div>
+		</div>
+		 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+			var small = $(".small");
+			var reverse = $((small).get().reverse());
+			$(document).ready(function() {
+				$(".main").on('mouseenter', function() {
+					reverse.each(function(i) {
+						var current = $(this);
+						setTimeout(function() {
+							current.addClass('animate');
+						}, 50*i);
+					});
+				});
+
+				$("#quicklinks-container").on('mouseleave', function() {
+					small.each(function(i) {
+						var current = $(this);
+						setTimeout(function() {
+							current.removeClass('animate');
+						}, 50*i);
+					});
+				});
+			});
+		</script>
+	</body>		
+</html>

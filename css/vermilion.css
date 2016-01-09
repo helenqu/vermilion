@@ -1,0 +1,245 @@
+body {
+	display: inline-block;
+	font-family: 'Karla', sans-serif;
+	font-size: 30px;
+}
+
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("https://source.unsplash.com/category/nature/") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/*opacity: 0.8;*/
+	z-index: -1;
+	-webkit-animation: fadein 4s;
+}
+
+#background2 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("https://source.unsplash.com/category/nature/") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	z-index: -1;
+	-webkit-mask: -webkit-linear-gradient(to right, black, transparent 80%);
+	-webkit-mask: linear-gradient(to right, black, transparent 80%);
+	-webkit-filter: blur(5px);
+	-webkit-animation: fadein 4s;
+}
+
+#clock-container {
+	display: inline-block;
+	-webkit-animation: fadein 4s;
+	position: relative;
+	width: 80%;
+	height: 20%;
+	margin-top: 5%;
+	margin-right: 0%;
+}
+
+#time {
+	font-size: 120px;
+	padding-left: 40%;
+	opacity: 0.7;
+	font-weight: 700;
+}
+
+#date {
+	font-family: 'Josefin Slab', serif;
+	font-weight: 400;
+	font-size: 60px;
+	letter-spacing: 10px;
+	padding-left: 40%;
+	opacity: 0.6;
+}
+
+#todo-container {
+	float: left;
+	display: inline-block;
+	margin-top: 5%;
+	margin-left: 15%;
+	width: 40%;
+}
+
+#quicklinks-container {
+	position: absolute;
+	float: right;
+	left: 90%;
+	bottom: 5%;
+	/*margin-right: 10%;*/
+	/*margin-bottom: 5%;*/
+}
+
+.link {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	opacity: 0;
+	-webkit-transform: scale(0.6);
+	transform: scale(0.6);
+	-webkit-transition: all 120ms cubic-bezier(.25, 0.25, 0, 1);
+	transition: all 120ms cubic-bezier(.25, 0.25, 0, 1);
+}
+
+.small {
+	width: 60px;
+	height: 60px;
+	background-color: white; 
+	border-radius: 100%
+}
+
+.main {
+	width: 80px;
+	height: 80px;
+}
+
+.animate {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+img {
+	display: block;
+}
+
+img:hover {
+	opacity: 0.7;
+}
+
+td {
+	padding: 20px 20px 20px 20px;
+}
+
+.col1 {
+	padding-left: 0px;
+}
+
+.row1 {
+	padding-top: 0px;
+}
+
+ul {
+	padding-left: 0px;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=text] {
+	height: 40px;
+	border-width: 0px;
+	font-size: 30px;
+	font-family: 'Karla', sans-serif;
+	background: transparent;
+}
+
+input[type=text]:focus {
+	border-bottom-width: 2px;
+	/*border-bottom-color: black;*/
+	border-bottom-color: rgb(86,94,97);
+}
+
+button {
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+input:focus, button:focus {
+	outline: 0;
+}
+
+::-webkit-input-placeholder { 
+	font-size: 30px;
+	font-family: 'Karla', sans-serif;
+	color: black;
+	opacity: 0.6;
+}
+
+:-moz-placeholder {
+	font-size: 30px; 
+	font-family: 'Karla', sans-serif;
+	color: black;
+	opacity: 0.6;
+}
+
+::-moz-placeholder {
+	font-size: 30px;
+	font-family: 'Karla', sans-serif;
+	color: black;
+	opacity: 0.6;
+}
+
+:-ms-input-placeholder {
+   	font-size: 30px;
+   	font-family: 'Karla', sans-serif;
+   	color: black;
+   	opacity: 0.6;
+}
+
+.checkbox {
+	display: inline-block;
+	margin: 0px 0px 10px 0px;
+}
+
+.checkbox label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #8C8C8C;
+	margin: 0px 10px 0px 0px;
+	-webkit-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+	background: #8C8C8C;
+	opacity: 0;
+}
+
+.done-true, .done-false {
+	margin-left: 20px;
+	-webkit-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+}
+
+.done-true {
+	color: #8C8C8C;
+	opacity: 0;
+}
+
+@keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@-ms-keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
