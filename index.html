@@ -20,10 +20,11 @@
 		</div>
 		<div id="todo-container" ng-controller="todoController">
 			<form ng-submit="add()">
-				<input type="text" ng-model="text" size="30" placeholder="add a new goal">
+				<input type="text" ng-model="text" size="50" placeholder="add a new goal">
 				<button type="submit">
 					<i class="fa fa-chevron-right fa-2x"></i>
 				</button>
+				<hr />
 			</form>
 			<ul style="list-style:none">
 				<li ng-repeat="item in items track by $index">
@@ -36,31 +37,49 @@
 			</ul>
 		</div>
 		<div id="quicklinks-container">
-			<div class="link small">
-				<a href="https://www.facebook.com"><img src="img/app-icons/facebook.png" class="small"></a>
+			<div class="btn link">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Facebook">Facebook</div>
+					<a href="https://www.facebook.com"><img src="img/app-icons/facebook.png" class="small"></a>
+				</label>
 			</div>
-			<div class="link small">
-				<a href="https://www.gmail.com"><img src="img/app-icons/mail.png" class="small"></a>
+			<div class="btn link">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Mail">Mail</div>
+					<a href="https://www.gmail.com"><img src="img/app-icons/mail.png" class="small"></a>
+				</label>
 			</div>
-			<div class="link small">
-				<a href="https://www.pinterest.com"><img src="img/app-icons/pinterest.png" class="small"></a>
+			<div class="btn link">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Google">Google</div>
+					<a href="https://www.google.com"><img src="img/app-icons/google.png" class="small"></a>
+				</label>
 			</div>
-			<div class="link small">
-				<a href="https://www.google.com"><img src="img/app-icons/google.png" class="small"></a>
+			<div class="btn link">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Pinterest">Pinterest</div>
+					<a href="https://www.pinterest.com"><img src="img/app-icons/pinterest.png" class="small"></a>
+				</label>
 			</div>
-			<div class="link small">
-				<a href="https://www.forecast.io"><img src="img/app-icons/weather.png" class="small" style="background-color: white; border-radius: 100%"></a>
+			<div class="btn link">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Weather">Weather</div>
+					<a href="https://www.forecast.io"><img src="img/app-icons/weather.png" class="small" style="background-color: white; border-radius: 100%"></a>
+				</label>
 			</div>
-			<div class="main">
-				<img src="img/app-icons/apps.png" class="main">
+			<div class="btn main">
+				<label class="link-label">
+					<div class="link-tooltip" data-tooltip="Favorites">Favorites</div>
+					<img src="img/app-icons/apps.png" class="main">
+				</label>
 			</div>
 		</div>
 		 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script>
-			var small = $(".small");
-			var reverse = $((small).get().reverse());
+			var links = $(".link");
+			var reverse = $((links).get().reverse());
 			$(document).ready(function() {
-				$(".main").on('mouseenter', function() {
+				$("#quicklinks-container").on('mouseenter', function() {
 					reverse.each(function(i) {
 						var current = $(this);
 						setTimeout(function() {
@@ -70,7 +89,7 @@
 				});
 
 				$("#quicklinks-container").on('mouseleave', function() {
-					small.each(function(i) {
+					links.each(function(i) {
 						var current = $(this);
 						setTimeout(function() {
 							current.removeClass('animate');
