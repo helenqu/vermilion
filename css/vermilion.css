@@ -1,5 +1,4 @@
 body {
-	display: inline-block;
 	font-family: 'Karla', sans-serif;
 	font-size: 30px;
 }
@@ -17,32 +16,37 @@ body {
 	background-size: cover;
 	z-index: -1;
 	-webkit-animation: fadein 2s;
+	-webkit-filter: blur(5px);
 }
 
 #clock-container {
-	display: inline-block;
+	margin-top: 100px;
 	-webkit-animation: fadein 4s;
-	position: relative;
-	width: 80%;
-	height: 20%;
-	margin-top: 5%;
-	margin-right: 0%;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #time {
 	font-size: 120px;
-	padding-left: 40%;
 	opacity: 0.7;
 	font-weight: 700;
+	color: #111;
+	text-shadow: 0px 1px 0 rgba(255,255,255,0.5), 0px -1px 0 #000;
+	display: block;
+	text-align: center;
 }
 
 #date {
 	font-family: 'Josefin Slab', serif;
 	font-weight: 400;
 	font-size: 60px;
-	letter-spacing: 10px;
-	padding-left: 40%;
+	letter-spacing: 5px;
 	opacity: 0.6;
+	color: #111;
+	text-shadow: 0px 1px 0 rgba(255,255,255,0.5), 0px -1px 0 #000;
+	display: block;
+	text-align: center;
 }
 
 #todo-container {
@@ -60,31 +64,24 @@ body {
     right: 0;
     bottom: 0;
     padding-bottom: 50px;
-	/*float: right;*/
-	/*left: 80%;*/
-	/*bottom: 5%;*/
+}
+
+#quicklinks-small {
+	margin-right: 50px;
 }
 
 .link {
-	margin-left: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	/*margin-right: 10px;*/
-	/*opacity: 0;*/
-	-webkit-transform: scale(0.6);
-	transform: scale(0.6);
-	-webkit-transition: all 120ms cubic-bezier(.25, 0.25, 0, 1);
-	transition: all 120ms cubic-bezier(.25, 0.25, 0, 1);
-}
-
-.link .small {
-	/*display: inline-block;*/
-	width: 60px;
-	height: 60px;
+	margin-bottom: 35px;
 	margin-left: 8px;
-	margin-bottom: 16px;
-	background-color: white; 
-	border-radius: 100%;
+
+	-webkit-transform: scale(0.4);
+	transform: scale(0.4);
+	-webkit-transition: all 500ms cubic-bezier(.25, 0.25, 0, 1);
+	transition: all 500ms cubic-bezier(.25, 0.25, 0, 1);
+	-webkit-transform-origin: 150px 10px;
+	transform-origin: 150px 10px;
+
+	opacity: 0;
 	display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -93,8 +90,23 @@ body {
     align-items: flex-end;
 }
 
+.link .small {
+	width: 60px;
+	height: 60px;
+	margin-left: 8px;
+	margin-bottom: 16px;
+	background-color: white; 
+	border-radius: 100%;
+}
+
+.btn {
+	min-width: 175px;
+}
+
 .main {
-	display: inline;
+	opacity: 0.8;
+	position: relative;
+	right: -13px;
 	width: 80px;
 	height: 80px;
 }
@@ -106,22 +118,22 @@ body {
 }
 
 .link-label {
-	/*display: inline-block;*/
 	height: 40px;
 	vertical-align: middle;
 }
 
 .link-tooltip {
-	/*content: attr(data-tooltip);*/
 	display: inline-block;
 	opacity: 0;
-	background-color: black;
-	color: white;
-	font-size: 10px;
+	background-color: rgba(0, 0, 0, 0.6);
+	color: #ECECEC;
+	font-size: 14px;
 	padding: 6px 8px;
 	margin-top: 10px;
 	margin-right: 10px;
 	vertical-align: top;
+	-webkit-transition: opacity 200ms cubic-bezier(.4,0,1,1);
+            transition: opacity 200ms cubic-bezier(.4,0,1,1);
 }
 
 .btn:hover .link-tooltip {
@@ -148,14 +160,14 @@ input[type=text] {
 	background: transparent;
 }
 
-hr {
+/*hr {
 	height: 2px;
 	border: 0;
 	border-top: 2px solid black;
 	opacity: 0.4;
 	width: 90%;
 	float: left;
-}
+}*/
 
 button {
 	border: 0;
@@ -172,28 +184,28 @@ input:focus, button:focus {
 	font-size: 30px;
 	font-family: 'Karla', sans-serif;
 	color: black;
-	opacity: 0.6;
+	opacity: 0.7;
 }
 
 :-moz-placeholder {
 	font-size: 30px; 
 	font-family: 'Karla', sans-serif;
 	color: black;
-	opacity: 0.6;
+	opacity: 0.7;
 }
 
 ::-moz-placeholder {
 	font-size: 30px;
 	font-family: 'Karla', sans-serif;
 	color: black;
-	opacity: 0.6;
+	opacity: 0.7;
 }
 
 :-ms-input-placeholder {
    	font-size: 30px;
    	font-family: 'Karla', sans-serif;
    	color: black;
-   	opacity: 0.6;
+   	opacity: 0.7;
 }
 
 .checkbox {
