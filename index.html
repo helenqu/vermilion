@@ -1,103 +1,140 @@
 <!DOCTYPE HTML>
 <html ng-app="vermilionApp">
 	<head>
-		<title>vermilion</title>
+		<title>mimera</title>
 		<link href='https://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Josefin+Slab:400,300,100' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Slab:700,400' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/vermilion.css">
 		<link rel="stylesheet" href="img/font-awesome-4.3.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/clock.js"></script>
-		<script src="js/todo.js"></script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-75246316-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
 	</head>
 	<body>
 		<div id="background"></div>
-		<div id="background2"></div>
-		<div id="clock-container" ng-controller="clockController">
-			<span id="time">{{current_hour}} &nbsp; {{current_minute}} &nbsp; {{current_second}}</span>
-			<span id="date">{{current_month}} {{current_day}}, {{current_year}}</span>
+		<div id="mask"></div>
+		<div id="container">
+			<button class="open-menu"><img id="open-menu" src="img/app-icons/settings.png"></button>
+			<div id="clock-container" ng-controller="clockController">
+				<span id="time">{{current_hour}}&nbsp;{{current_minute}}&nbsp;{{current_second}}</span>
+				<span id="date">{{current_month}} {{current_day}}, {{current_year}}</span>
+			</div>
+			<div id="weather-container" ng-controller="weatherController">
+				<span id="city"><b>{{current_city}}</b></span>
+				<span><b><i>{{display}}</b></i></span>
+			</div>
 		</div>
-		<div id="todo-container" ng-controller="todoController">
-			<form ng-submit="add()">
-				<input type="text" ng-model="text" size="50" placeholder="add a new goal">
-				<button type="submit">
-					<i class="fa fa-chevron-right fa-2x"></i>
-				</button>
-			</form>
-			<ul style="list-style:none">
-				<li ng-repeat="item in items track by $index">
-					<div class="checkbox">
-						<input type="checkbox" id="my-checkbox-{{::count()}}" ng-model="item.done" ng-click="$timeout(done, 1000)"/>
-						<label for="my-checkbox-{{::count()}}"></label>
-					</div>
-					<span class="done-{{item.done}}">{{item.text}}</span>
-				</li>
-			</ul>
-		</div>
-		<div id="quicklinks-container">
+		<div id="quicklinks-container" ng-controller="favoritesController">
 			<div id="quicklinks-small">
 				<div class="btn link">
 					<label class="link-label">
-						<div class="link-tooltip" data-tooltip="Facebook">Facebook</div>
-						<a href="https://www.facebook.com"><img src="img/app-icons/facebook.png" class="small"></a>
+						<div class="link-tooltip" data-tooltip="Facebook">{{ ::(fave0[0] == "") ? "Facebook" : fave0[0] }}</div>
+						<a href="{{ ::(fave0[1] == '') ? 'https://www.facebook.com' : fave0[1] }}"><img src="{{ ::updateIcon(fave0, 'facebook') }}" class="small"></a>
 					</label>
 				</div>
 				<div class="btn link">
 					<label class="link-label">
-						<div class="link-tooltip" data-tooltip="Mail">Mail</div>
-						<a href="https://www.gmail.com"><img src="img/app-icons/mail.png" class="small"></a>
+						<div class="link-tooltip" data-tooltip="Mail">{{ ::(fave1[0] == "") ? "Mail" : fave1[0] }}</div>
+						<a href="{{ ::(fave1[1] == '') ? 'https://www.gmail.com' : fave1[1] }}"><img src="{{ ::updateIcon(fave1, 'mail') }}" class="small"></a>
 					</label>
 				</div>
 				<div class="btn link">
 					<label class="link-label">
-						<div class="link-tooltip" data-tooltip="Google">Google</div>
-						<a href="https://www.google.com"><img src="img/app-icons/google.png" class="small"></a>
+						<div class="link-tooltip" data-tooltip="Google">{{ ::(fave2[0] == "") ? "Google" : fave2[0] }}</div>
+						<a href="{{ ::(fave2[1] == '') ? 'https://www.google.com' : fave2[1] }}"><img src="{{ ::updateIcon(fave2, 'google') }}" class="small"></a>
 					</label>
 				</div>
 				<div class="btn link">
 					<label class="link-label">
-						<div class="link-tooltip" data-tooltip="Pinterest">Pinterest</div>
-						<a href="https://www.pinterest.com"><img src="img/app-icons/pinterest.png" class="small"></a>
+						<div class="link-tooltip" data-tooltip="Pinterest">{{ ::(fave3[0] == "") ? "Pinterest" : fave3[0] }}</div>
+						<a href="{{ ::(fave3[1] == '') ? 'https://www.pinterest.com' : fave3[1] }}"><img src="{{ ::updateIcon(fave3, 'pinterest') }}" class="small"></a>
 					</label>
 				</div>
 				<div class="btn link">
 					<label class="link-label">
-						<div class="link-tooltip" data-tooltip="Weather">Weather</div>
-						<a href="https://www.forecast.io"><img src="img/app-icons/weather.png" class="small"></a>
+						<div class="link-tooltip" data-tooltip="Weather">{{ ::(fave4[0] == "") ? "Weather" : fave4[0] }}</div>
+						<a href="{{ ::(fave4[1] == '') ? 'https://www.forecast.io' : fave4[1] }}"><img src="{{ ::updateIcon(fave4, 'weather') }}" class="small"></a>
 					</label>
 				</div>
 			</div>
 			<div class="btn main">
 				<label class="link-label">
 					<div class="link-tooltip" data-tooltip="Favorites">Favorites</div>
-					<img src="img/app-icons/apps.png" class="main">
+					<img src="img/app-icons/dots.png" class="main">
 				</label>
 			</div>
 		</div>
-		 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<div id="settings-container" ng-controller="favoritesController">
+			<p id="settings-title">SETTINGS</p>
+			<p class="settings-section-title"><i>FAVORITES</i></p>
+			<table id="settings-table">
+				<tr id="table-titles">
+					<td>Title</td>
+					<td>URL</td>
+				</tr>
+				<form id="favorites-form">
+					<tr>
+						<td><input type="text" class="title" id="title1" ng-model="fave0[0]" placeholder="Facebook"></td>
+						<td><input type="text" class="url" name="url1" ng-model="fave0[1]" placeholder="www.facebook.com"></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="title" name="title2" ng-model="fave1[0]" placeholder="Mail"></td>
+						<td><input type="text" class="url" name="url2" ng-model="fave1[1]" placeholder="www.gmail.com"></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="title" name="title3" ng-model="fave2[0]" placeholder="Google"></td>
+						<td><input type="text" class="url" name="url3" ng-model="fave2[1]" placeholder="www.google.com"></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="title" name="title4" ng-model="fave3[0]" placeholder="Pinterest"></td>
+						<td><input type="text" class="url" name="url4" ng-model="fave3[1]" placeholder="www.pinterest.com"></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="title" name="title5" ng-model="fave4[0]" placeholder="Weather"></td>
+						<td><input type="text" class="url" name="url5" ng-model="fave4[1]" placeholder="www.forecast.io"></td>
+					</tr>
+				</table>
+				<input type="submit" id="settings-submit" value="Save Changes" ng-click="getFavoritesData()">
+			</form>
+		</div>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/clock.js"></script>
+		<script src="js/weather.js"></script>
+		<script src="js/settings-action.js"></script>
+		<script src="js/favorites.js"></script>
 		<script>
-			var links = $(".link");
-			var reverse = $((links).get().reverse());
-			$(document).ready(function() {
-				$("#quicklinks-container").on('mouseenter', function() {
-					reverse.each(function(i) {
-						var current = $(this);
-						setTimeout(function() {
-							current.addClass('animate');
-						}, 50*i);
-					});
-				});
-
-				$("#quicklinks-container").on('mouseleave', function() {
-					links.each(function(i) {
-						var current = $(this);
-						setTimeout(function() {
-							current.removeClass('animate');
-						}, 50*i);
-					});
-				});
+			var menu = new Menu({
+				wrapper: "#container",
+				wrapper2: "#quicklinks-container",
+				menuOpenerClass: ".open-menu",
+				maskId: "#mask"
 			});
+
+			var menuButton = document.querySelector('#open-menu');
+
+			menuButton.addEventListener('click', function(e) {
+				e.preventDefault;
+				menu.open();
+			})
+		</script>
+		<script>
+			var background_array = ["Ixp4YhCKZkI", "Nte-4RiRfwU", "R3LcfTvcGWY", "eBDdgbM5dSo", "0LU4vO5iFpM", "71cd1rWqO8M", "OlZ1nWLEEgM", "YIN4xUBaqnk", "jkPKQWK1sKU", "YG_Fxyqz9xg", "X5ChCOu8CQg", "47af9f2kJ08", "-uPDkAK6f8A", "u6RgER9VCsk", "0nT08Z-MhiE", "ziDTXxEO_Vo", "5vcFbyeERM8", "grbGCiKa-OA", "IQ0jqC0Jjuk", "-LnkAJPY5fc"];
+
+			var random_index = Math.floor(Math.random() * background_array.length);
+
+			var background_element = "linear-gradient(rgba(231, 231, 231, 0), rgba(231, 231, 231, 0.4)), url('https://source.unsplash.com/" + background_array[random_index] + "/1600x900') no-repeat center center fixed";
+
+			$("#background").css("background", background_element);
 		</script>
 	</body>		
 </html>

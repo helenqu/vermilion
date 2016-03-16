@@ -16,16 +16,16 @@ angular.module('vermilionApp')
 			var hour = today.getHours();
 			var minute = today.getMinutes();
 			var second = today.getSeconds();
-			$scope.current_hour = (hour > 12) ? (hour - 12) : hour;
+			$scope.current_hour = getHour(hour);
 			$scope.current_minute = checkTime(minute);
 			$scope.current_second = checkTime(second);
 			$timeout($scope.tick, $scope.tick_interval);
 		};
 
 		$scope.month = function() {
-			var months = ['january', 'february', 'march', 'april', 'may',
-				'june', 'july', 'august', 'september', 'october', 'november',
-				'december'];
+			var months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY',
+				'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER',
+				'DECEMBER'];
 			var today = new Date();
 			var month = today.getMonth();
 			$scope.current_month = months[month];
@@ -33,6 +33,16 @@ angular.module('vermilionApp')
 
 		function checkTime(i) {
 			return (i < 10) ? ("0" + i) : i;
+		};
+
+		function getHour(hour) {
+			if (hour > 12) {
+				return hour - 12;
+			} else if (hour <= 12 && hour != 0) {
+				return hour;
+			} else {
+				return hour + 12;
+			}
 		};
 
 		$scope.tick();
