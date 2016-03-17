@@ -134,7 +134,7 @@
 
 			var background_element = "linear-gradient(rgba(231, 231, 231, 0), rgba(231, 231, 231, 0.4)), url('https://source.unsplash.com/" + background_array[random_index] + "/1600x900') no-repeat center center fixed";
 
-			$("#background").css("background", background_element);
+			$("#background").css({"background":background_element, "background-size":"cover", "-moz-background-cover":"cover"});
 		</script>
 	</body>		
 </html>
